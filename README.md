@@ -23,3 +23,7 @@ Example:
 To install, run maven:
 
 `mvn -Dimagej.app.directory=/path_to_fiji/Fiji.app`
+
+then perform a plugins update to resolve package issues:
+
+`Fiji.app/ImageJ-linux64 --update update`
