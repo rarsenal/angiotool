@@ -18,3 +18,8 @@ Options for AngioTools are separated by a single space " "
 Example:
 
 `run("AngioTool", "10,30,40 15 255 200 1000");`
+
+
+To install, run maven:
+
+`mvn -Dimagej.app.directory=/path_to_fiji/Fiji.app`
