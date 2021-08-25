@@ -23,6 +23,7 @@ import ij.gui.ShapeRoi;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
 import angiotool.PolygonPlus;
+import java.io.*;
 
 public class ForkShapeRoiSplines extends RecursiveTask <ShapeRoi> {
 
@@ -56,9 +57,12 @@ public class ForkShapeRoiSplines extends RecursiveTask <ShapeRoi> {
         for (int i = mStart; i < mStart + mLength; i++){
             PolygonRoi pr = new PolygonRoi (originalRoi[i].getPolygon(), Roi.POLYGON);
             int coordinates = pr.getNCoordinates();
+	    //System.out.println(coordinates);
+	    int evaluationPoints = (int) (pr.getNCoordinates()/fraction);
+	    System.out.println(evaluationPoints);
             double area = new PolygonPlus (pr.getPolygon()).area();
-            pr.fitSpline(pr.getNCoordinates()/fraction);
-            result.xor (new ShapeRoi (pr));
+            pr.fitSpline(evaluationPoints);
+            result.xor (new ShapeRoi (pr));//problem here
         }
         result.xor (first);
         return result;

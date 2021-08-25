@@ -19,7 +19,7 @@ package angiotool;
 import angiotool.gui.AngioToolGUI;
 
 public class AngioTool {
-    
+
     public static AngioToolGUI allantoisGUI;
     AngioTool (){
         allantoisGUI = new AngioToolGUI ();

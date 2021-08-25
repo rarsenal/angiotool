@@ -44,7 +44,7 @@ import java.io.File;
 public class Utils {
 
     public static final String NAME = "AngioTool";
-    public static final String VERSION = "0.5a (May 25, 2011)";
+    public static final String VERSION = "2021";
 
     public final static String LOOKANDFEEL = "System";
 
@@ -258,7 +258,7 @@ public class Utils {
         result.xor (first);
         return result;
     }
-   
+
 
     public static int findHistogramMax (int [] histogram){
         double max = 0.0;

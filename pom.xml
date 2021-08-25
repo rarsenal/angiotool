@@ -13,7 +13,6 @@
 
 	<groupId>angiotool</groupId>
 	<artifactId>Angio_Tool</artifactId>
-	<version>0.5.2-SNAPSHOT</version>
 
 	<name>plugins/Angio_Tool.jar</name>
 	<description>A Maven project implementing AngioTool</description>
@@ -116,6 +115,11 @@
 			<id>imagej.public</id>
 			<url>http://maven.imagej.net/content/groups/public</url>
 		</repository>
+		<repository>
+            		<id>netbeans</id>
+            		<name>NetBeans</name>
+            		<url>http://netbeans.apidesign.org/maven2/</url>
+        	</repository>
 	</repositories>
 
 	<scm>

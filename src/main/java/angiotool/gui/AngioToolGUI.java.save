@@ -17,7 +17,6 @@
 
 package angiotool.gui;
 
-import javax.swing.JFrame;
 import angiotool.MemoryMonitor;
 import angiotool.RGBStackSplitter;
 import angiotool.Results;
@@ -58,8 +57,6 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.Hashtable;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Arrays;
 
 import javax.swing.UIDefaults;
 import javax.swing.Icon;
@@ -80,9 +77,7 @@ import kz.swing.markSlider;
 import angiotool.PolygonPlus;
 import angiotool.SwingWorker;
 
-public class AngioToolGUI extends JFrame {
-
-
+public class AngioToolGUI extends javax.swing.JFrame {
 
     private Image imgIcon;
 
@@ -99,50 +94,50 @@ public class AngioToolGUI extends JFrame {
     private boolean smallParticles = false;
 
 
-    private double resizingFactor = 1;
+    private double resizingFactor = 1; 
 
-    private boolean sigmaIsChanged = false;
-    private boolean fillHolesIsChanged = false;
-    private boolean smallParticlesIsChanged = false;
-    private boolean hideOverlay = false;
+    private boolean sigmaIsChanged = false; 
+    private boolean fillHolesIsChanged = false; 
+    private boolean smallParticlesIsChanged = false; 
+    private boolean hideOverlay = false; 
 
-    private ImagePlus imageOriginal;
-    private ImagePlus imageResult;
-    private ImagePlus imageThresholded;
+    private ImagePlus imageOriginal; 
+    private ImagePlus imageResult; 
+    private ImagePlus imageThresholded; 
     private ImagePlus imageTubeness;
 
-    private ImageProcessor ipOriginal;
-    private ImageProcessor ipThresholded;
+    private ImageProcessor ipOriginal; 
+    private ImageProcessor ipThresholded; 
     private ImageProcessor tubenessIp;
 
     private int minSigma, maxSigma;
     private double[] firstSigma = {5.0};
     private ArrayList <Double> allSigmas;
-    private ArrayList <Double> currentSigmas;
+    private ArrayList <Double> currentSigmas; 
 
     private ArrayList <sigmaImages> sI;
-    private ArrayList <Point> al2;
-    private ArrayList <Point> removedJunctions;
+    private ArrayList <Point> al2; 
+    private ArrayList <Point> removedJunctions; 
     private ArrayList <Point> endPoints;
 
-    private PolygonPlus convexHull;
+    private PolygonPlus convexHull; 
     private double convexHullArea;
 
-    private Overlay allantoisOverlay;
-    private Roi outlineRoi;
-    private PolygonRoi convexHullRoi;
-    private ArrayList <Roi> skeletonRoi;
-    private ArrayList <Roi> junctionsRoi;
+    private Overlay allantoisOverlay; 
+    private Roi outlineRoi; 
+    private PolygonRoi convexHullRoi; 
+    private ArrayList <Roi> skeletonRoi; 
+    private ArrayList <Roi> junctionsRoi; 
     private long thresholdedPixelArea = 0;
 
-    private Graph [] graph;
+    private Graph [] graph; 
 
     private Color initialOutlineColor = Color.yellow;
     private Color initialSkeletonColor = Color.red;
     private Color initialBranchingPointColor = new Color (0,153,255);
     private Color initialConvexHullColor = new Color (204,255,255);
 
-    private int initialOutlineSize = 1;
+    private int initialOutlineSize = 1; 
     private int initialSkeletonSize = 1;
     private int initialBranchingPointsSize = 1;
     private int initialConvexHullSize = 1;
@@ -162,14 +157,14 @@ public class AngioToolGUI extends JFrame {
     private boolean computeLacunarity = true;
     private double ElSlope;
     private double medialELacunarity;
-    private int [] lacunarityBoxes;
+    private int [] lacunarityBoxes; 
     private ArrayList <Double> Elamdas = new ArrayList <Double>();
     private double meanEl;
 
     private double LinearScalingFactor = 0.0;
     private double AreaScalingFactor = 0.0;
 
-    private String outputString;
+    private String outputString; 
     private Results results;
 
 
@@ -210,7 +205,6 @@ public class AngioToolGUI extends JFrame {
 
         startDate = new Date();
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -306,13 +300,13 @@ public class AngioToolGUI extends JFrame {
             }
         });
 
-        //setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle(Utils.NAME + " " + Utils.VERSION);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setMinimumSize(new java.awt.Dimension(540, 790));
         setName("mainFrame"); // NOI18N
         setResizable(false);
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         openImageButton.setFont(new java.awt.Font("Tahoma", 1, 11));
         openImageButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/OpenImages642.png"))); // NOI18N
@@ -921,9 +915,9 @@ public class AngioToolGUI extends JFrame {
 
             initVariables();
 
-            FileInfo fi = inputImage.getOriginalFileInfo();
-		        String fileDirectory = fi.directory;
-		        String fileName = fi.fileName;
+                FileInfo fi = inputImage.getOriginalFileInfo();
+		fileDirectory = fi.directory;
+		fileName = fi.fileName;
 
 		System.out.println("Image name and location: "+fileDirectory+", "+fileName);
 		imageFile = new File(fi.directory, fi.fileName);
@@ -994,7 +988,7 @@ public class AngioToolGUI extends JFrame {
         }catch (java.lang.OutOfMemoryError e){
             if (JOptionPane.showConfirmDialog(null, "Your system has run out of memory" +
                     "\n Reinitializing all variables...",
-                "AngioTool",
+                "Allantois Analysis",
                 JOptionPane.OK_OPTION, JOptionPane.ERROR_MESSAGE, null) == 0){
                     initVariables();
                 }
@@ -1074,13 +1068,13 @@ public class AngioToolGUI extends JFrame {
 
             String extension = null;
             extension = Utils.getExtension(resultsFile);
-            if (extension != null){
-                if (extension.equals("xls") || extension.equals("xlsx")){
+            if (extension != null){  
+                if (extension.equals("xls") || extension.equals("xlsx")){  
                     saveResultsToTextField.setText(resultsFile.getPath());
-                }else{
+                }else{ 
                     saveResultsToTextField.setText(resultsFile.getPath()+".xls");
                 }
-            } else {
+            } else { 
                 saveResultsToTextField.setText(resultsFile.getPath()+".xls");
             }
 
@@ -1164,8 +1158,8 @@ public class AngioToolGUI extends JFrame {
     }//GEN-LAST:event_removeSmallParticlesSpinnerStateChanged
 
     private void ExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitButtonActionPerformed
-        if (JOptionPane.showConfirmDialog(null, "Do you really want to exit AngioTool?",
-                "AngioTool",
+        if (JOptionPane.showConfirmDialog(null, "Do you really want to exit Allantois Analysis?",
+                "Allantois Analysis",
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null) == 0){
 
             if (imageResult!=null)
@@ -1222,7 +1216,7 @@ public class AngioToolGUI extends JFrame {
             IJ.saveAs(imageResultFlattenen, imageResultFormat, imageFile.getAbsolutePath()+ " result." + imageResultFormat);
         } else
             if (JOptionPane.showConfirmDialog(null, "No image to save",
-                    "AngioTool",
+                    "Allantois Analysis",
                     JOptionPane.CLOSED_OPTION, JOptionPane.WARNING_MESSAGE, null) == 0){
                 System.gc();
             }
@@ -1277,57 +1271,12 @@ public class AngioToolGUI extends JFrame {
         AreaScalingFactor = 1.0;
     }//GEN-LAST:event_clearCalibrationButtonActionPerformed
 
-    public void doAnalysisHeadless(String sigmasString, int threshold_low, int threshold_high, int smallParticlesValue, int fillHolesValue) {
+    public void doAnalysisHeadless() {
+	
 
-        thresholdRangeSlider.setLowValue(threshold_low);
-        thresholdRangeSlider.setHighValue(threshold_high);
-        lowThresholdTextField.setText(""+thresholdRangeSlider.getLowValue());
-        highThresholdTextField.setText(""+thresholdRangeSlider.getHighValue());
-
-        String str[] = sigmasString.split(",");
-	      List<String> alString = new ArrayList<String>();
-        ArrayList<Integer> alIntegers = new ArrayList<Integer>();
-	      alString = Arrays.asList(str);
-	      for(String s: alString){
-           int i = Integer.parseInt(s);
-	         sigmasMarkSlider.addMark(i);
-           alIntegers.add(i);
-	      }
-        try {
-            updateSigmas(alIntegers);
-        }catch (java.lang.OutOfMemoryError e){
-            if (JOptionPane.showConfirmDialog(null, "Your system has run out of memory" +
-                    "\n Reinitializing all variables...",
-                "AngioTool",
-                JOptionPane.OK_OPTION, JOptionPane.ERROR_MESSAGE, null) == 0){
-                    initVariables();
-                }
-        }
-        sigmaIsChanged = true;
-        boolean isSmallParticles = false;
-        if (smallParticlesValue > 0) {
-          isSmallParticles = true;
-          smallParticlesRangeSlider2.setValue(smallParticlesValue);
-        };
-
-        smallParticlesCheckBox.setSelected(isSmallParticles);
-        smallParticlesIsChanged = true;
-
-        boolean isFillHole = false;
-        if (fillHolesValue > 0) {
-          isFillHole = true;
-          fillHolesRangeSlider2.setValue(fillHolesValue);
-        };
-
-        fillHolesCheckBox.setSelected(isFillHole);
-        fillHolesIsChanged = true;
-
-        doAnalysis();
-        populateResults();
-        
     }
 
-    public Object doAnalysis (){
+    private Object doAnalysis (){
         int progress = 0;
 
         progressBar.setMinimum(0);
@@ -1416,7 +1365,7 @@ public class AngioToolGUI extends JFrame {
         results.fillHoles = fillHolesRangeSlider2.getValue();
 
         results.LinearScalingFactor = LinearScalingFactor;
-        results.AreaScalingFactor = AreaScalingFactor;
+        results.AreaScalingFactor = AreaScalingFactor; 
         results.allantoisPixelsArea = convexHullArea;
         results.allantoisMMArea = convexHullArea * AreaScalingFactor;
         results.totalNJunctions = al2.size();
@@ -1424,7 +1373,7 @@ public class AngioToolGUI extends JFrame {
         results.JunctionsPerScaledArea = al2.size() / results.allantoisMMArea;
         //results.vesselPixelArea = Utils.thresholdedPixelArea(imageThresholded.getProcessor());
         results.vesselMMArea = results.vesselPixelArea * AreaScalingFactor;
-        results.vesselPercentageArea = (results.vesselMMArea * 100)/results.allantoisMMArea;
+        results.vesselPercentageArea = (results.vesselMMArea * 100)/results.allantoisMMArea; 
 
         //compute total length and average length
         double [] branchLengths = skelResult.getAverageBranchLength();
@@ -1559,7 +1508,7 @@ public class AngioToolGUI extends JFrame {
             imageThresholded.killRoi();
             ImageProcessor temp1 = imageThresholded.getProcessor();
             temp1.invert();
-            Utils.fillHoles(imageThresholded, 0, fillHolesRangeSlider2.getValue(), 0.0, 1.0, 0);
+            Utils.fillHoles(imageThresholded, 0, fillHolesRangeSlider2.getValue(), 0.0, 1.0, 0);  
             temp1.invert();
         }
 
@@ -1663,7 +1612,7 @@ public class AngioToolGUI extends JFrame {
          Lacunarity l = new Lacunarity (iplus,
                  numBoxes,
                  minBoxSize,
-                 slideXY,
+                 slideXY, 
                  true);
          this.ElSlope = l.getEl3Slope();
          this.lacunarityBoxes = l.getBoxes();
@@ -1763,6 +1712,14 @@ public class AngioToolGUI extends JFrame {
             if (s>=low && s<=high && !currentSigmas.contains(s))
                 currentSigmas.add(s);
         }
+    }
+
+
+    private void preCompute (){
+
+        initControls();
+
+        computeFirstOutline (firstSigma, thresholdRangeSlider.getLowValue(), thresholdRangeSlider.getHighValue());
     }
 
     private void initControls (){
